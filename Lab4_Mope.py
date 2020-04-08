@@ -1,6 +1,6 @@
 import numpy as np
 from scipy.stats import t, f
-from itertools import product, combinations
+from itertools import product, combinations; """ Пояснив використання бібліотеки в 76 та 101 рядку коду """
 
 np.set_printoptions(formatter={"float_kind": lambda x: '%.2f'%(x)})
 
@@ -73,7 +73,7 @@ while True:
     x2min, x2max = -35, 15
     x3min, x3max = 25, 20
     def_matrx = np.array([[x1min, x1max], [x2min, x2max], [x3min, x3max]])
-    norm_factors = np.array(list(product("01", repeat=3)), dtype=np.int)
+    norm_factors = np.array(list(product("01", repeat=3)), dtype=np.int); """  Повертає декартовий добуток усіх вторядкованих пар для "01"  """
     norm_factors[norm_factors == 0] = -1
     norm_factors = np.insert(norm_factors, 0, 1, axis=1)
     factors = np.empty((8, 3))
@@ -98,7 +98,7 @@ while True:
     Y_matrix = np.random.randint(200 + np.mean(def_matrx, axis=0)[0],
                                  200 + np.mean(def_matrx, axis=0)[1], size=(N, m))
     mean_Y = np.mean(Y_matrix, axis=1)
-    combination = list(combinations(range(1, 4), 2))
+    combination = list(combinations(range(1, 4), 2));    """ Комбінаторний генератор, повертає лісти комбінацій для заданого діапазону (видає тільки унікальні значення)"""
     for i in combination:
         factors = np.append(factors, np.reshape(factors[:, i[0]] * factors[:, i[1]], (8, 1)), axis=1)
         norm_factors = np.append(norm_factors, np.reshape(norm_factors[:, i[0]] * norm_factors[:, i[1]], (8, 1)),
